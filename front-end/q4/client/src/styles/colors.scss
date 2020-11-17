@@ -1,0 +1,23 @@
+$light-gray: #f5f7fa;
+$dark-gray: #434a54;
+
+$sunflower-light: #ffce54;
+$sunflower-dark: #f6bb42;
+
+$blue-jeans: #4a89dc;
+
+.bg-light {
+  background-color: $light-gray;
+}
+
+.bg-dark {
+  background-color: $dark-gray;
+}
+
+.text-light {
+  color: $light-gray;
+}
+
+.text-dark {
+  color: $dark-gray;
+}
