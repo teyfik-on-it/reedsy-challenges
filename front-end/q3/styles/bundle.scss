@@ -16,6 +16,9 @@ $npad: -$pad;
 $spacing: $pad / 2;
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
   font: $font;
   margin: 0;
   color: $text-dark;
@@ -109,6 +112,8 @@ h3 {
 }
 
 .main {
+  flex: 1;
+
   .container {
     border-radius: 10px 10px 0 0;
     box-shadow: 0 0 8px 2px $shadow;
