@@ -9,7 +9,7 @@
       </header>
 
       <main class="flex-fill my-2">
-        <p>{{ trimmedSynopsis }}</p>
+        <p class="synopsis">{{ trimmedSynopsis }}</p>
       </main>
 
       <footer class="d-flex justify-between align-center">
@@ -36,7 +36,7 @@
 <script>
 import Button from '@/components/Button';
 
-const maxLength = 200;
+export const maxLength = 200;
 
 export default {
   name: 'BookWidget',
