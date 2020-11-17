@@ -1,0 +1,35 @@
+@import "colors";
+
+* {
+  margin: unset;
+  padding: unset;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+body, input, button, textarea, select {
+  font: 500 14px/18px 'Open Sans', sans-serif;
+  color: $dark-gray;
+  background-color: $light-gray;
+}
+
+.container {
+  margin: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: unset;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.sticky {
+  position: fixed;
+}
+
+.sticky.bottom {
+  bottom: 0;
+}
