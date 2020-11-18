@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     map: {},
     list: null,
+    comments: {},
   },
   mutations: {
     setBooks(state, books) {
@@ -16,6 +17,15 @@ export default new Vuex.Store({
     setBook(state, book) {
       state.map[book.slug] = book;
       state.map = {...state.map};
+    },
+    setComments(state, {slug, comments}) {
+      state.comments[slug] = comments;
+    },
+    addComment({comments}, comment) {
+      const {slug} = comment;
+
+      comments[slug] = comments[slug] || [];
+      comments[slug] = comments[slug].concat(comment).sort((a, b) => a.id - b.id);
     },
   },
   actions: {
@@ -27,6 +37,16 @@ export default new Vuex.Store({
     fetchBook({commit}, slug) {
       api.books.getBook(slug).then(book => {
         commit('setBook', book);
+      });
+    },
+    fetchComments({commit}, slug) {
+      api.comments.getComments(slug).then(comments => {
+        commit('setComments', {slug, comments});
+      });
+    },
+    addComment({commit}, payload) {
+      api.comments.addComment(payload).then(comment => {
+        commit('addComment', comment);
       });
     },
   },
