@@ -1,5 +1,5 @@
 <template>
-  <button @click="$emit('click', $event)" v-bind:class="{outline}" v-bind:disabled="disabled">
+  <button v-bind:type="type" @click="$emit('click', $event)" v-bind:class="{outline}" v-bind:disabled="disabled">
     <slot></slot>
   </button>
 </template>
@@ -8,6 +8,7 @@
 export default {
   name: 'Button',
   props: {
+    type: String,
     outline: Boolean,
     disabled: Boolean,
   },
