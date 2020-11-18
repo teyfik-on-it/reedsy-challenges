@@ -1,6 +1,5 @@
 <template>
-
-  <button v-bind:class="{outline}" v-bind:disabled="disabled">
+  <button @click="$emit('click', $event)" v-bind:class="{outline}" v-bind:disabled="disabled">
     <slot></slot>
   </button>
 </template>
