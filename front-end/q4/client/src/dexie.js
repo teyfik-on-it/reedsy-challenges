@@ -5,7 +5,7 @@ class _Dexie extends Dexie {
     super('app');
 
     this.version(1).stores({
-      comments: '++id, slug, rating, author, content',
+      comments: '++id, slug, rating, author, content, createdAt',
     });
   }
 }
