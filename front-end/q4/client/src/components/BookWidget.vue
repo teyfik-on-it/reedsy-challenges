@@ -1,5 +1,5 @@
 <template>
-  <div class="book-widget d-flex elevation-z4 p-2">
+  <div class="book-widget d-flex elevation-z4 p-2 bg-white">
     <div class="d-flex flex-fill flex-column">
       <header>
         <router-link v-bind:to="'/book/' + book.slug">

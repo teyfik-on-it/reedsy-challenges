@@ -22,7 +22,7 @@
       <Loading v-else desc="Loading books"/>
     </div>
 
-    <div class="sticky bottom w-100 p-2 d-flex justify-center bg-light elevation-t6" v-if="books">
+    <div class="sticky bottom w-100 p-2 d-flex justify-center bg-white elevation-t6" v-if="books">
       <p v-if="count > books.length">Showing {{ books.length }}/{{ count }} result<template v-if="books.length > 1">s</template></p>
       <p v-else>{{ count }} book<template v-if="count > 1">s</template></p>
     </div>

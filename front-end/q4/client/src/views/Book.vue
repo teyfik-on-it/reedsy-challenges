@@ -8,19 +8,19 @@
           </router-link>
         </nav>
 
-        <header class="elevation-z4 p-2 mt-3">
+        <header class="elevation-z4 p-2 mt-3 bg-white">
           <h1>{{ book.title }}</h1>
           <h2><i>{{ book.author }}</i></h2>
         </header>
 
         <div class="d-flex mt-3">
           <div class="flex-fill">
-            <main class="elevation-z4 p-2">
+            <main class="elevation-z4 p-2 bg-white">
               <h2>Synopsis</h2>
               <p class="mt-2">{{ book.synopsis }}</p>
             </main>
 
-            <footer class="d-flex justify-between elevation-z4 p-2 mt-3 align-center">
+            <footer class="d-flex justify-between elevation-z4 p-2 mt-3 align-center bg-white">
               <h3>Rating: {{ book.rating }}/10</h3>
 
               <div>
