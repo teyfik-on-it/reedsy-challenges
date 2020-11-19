@@ -1,9 +1,10 @@
 import Books from '@/views/Books';
 import Vuex from 'vuex';
-import {createLocalVue, shallowMount} from '@vue/test-utils';
+import {createLocalVue, mount} from '@vue/test-utils';
 import Loading from '@/components/Loading';
 import list from '../data/list';
 import BookWidget from '@/components/BookWidget';
+import Paginator from '@/components/Paginator';
 
 const localVue = createLocalVue();
 
@@ -11,7 +12,7 @@ localVue.use(Vuex);
 
 describe('Books', () => {
   const createWrapper = (fill = true) => {
-    return shallowMount(Books, {
+    return mount(Books, {
       localVue,
       store: new Vuex.Store({
         state: {list: fill ? list : null},
@@ -33,15 +34,20 @@ describe('Books', () => {
     expect(wrapper.findComponent(Loading).exists()).toBeFalsy();
   });
 
-  it('should list 10 items', function () {
+  it('should list 10 items', async function () {
     const wrapper = createWrapper();
 
-    expect(wrapper.findAllComponents(BookWidget).length).toBe(list.books.length);
+    wrapper.findComponent(Paginator).find('[name=perPage]').setValue(10);
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.findAllComponents(BookWidget).length).toBe(10);
   });
 
   it('should filter items', async function () {
     const wrapper = createWrapper();
     const input = wrapper.find('input');
+
+    wrapper.findComponent(Paginator).find('[name=perPage]').setValue(10);
 
     expect(input.exists()).toBeTruthy();
 
