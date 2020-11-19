@@ -1,5 +1,5 @@
 <template>
-  <div class="comment elevation-z4 bg-white p-2">
+  <Card class="comment">
     <header class="d-flex justify-between align-center">
       <h3>{{ comment.author }}</h3>
       <span>{{ '⭐'.repeat(comment.rating) }}</span>
@@ -22,14 +22,16 @@
 
       <span>{{ createdAt }}</span>
     </footer>
-  </div>
+  </Card>
 </template>
 
 <script>
 import moment from 'moment';
+import Card from '@/components/Card';
 
 export default {
   name: 'Comment',
+  components: {Card},
   props: {comment: {required: true}},
   computed: {
     createdAt() {

@@ -6,11 +6,11 @@
       </div>
 
       <template v-if="books">
-        <div class="p-2 elevation-z4 bg-white mb-2">
+        <Card class="mb-2">
           <label class="d-flex">
             <input type="text" v-model="search" placeholder="Filter books" class="flex-fill"/>
           </label>
-        </div>
+        </Card>
 
         <ul>
           <li v-bind:key="book.slug" v-for="book of books">
@@ -19,17 +19,21 @@
         </ul>
       </template>
 
-      <Loading v-else desc="Loading books"/>
+      <template v-else>
+        <Card>
+          <Loading desc="Loading books"/>
+        </Card>
+      </template>
     </div>
 
-    <div class="sticky bottom left w-100 p-2 d-flex justify-center bg-white elevation-t6" v-if="books">
+    <Card class="sticky bottom left w-100 d-flex justify-center elevation-t6" v-if="books">
       <p v-if="count > books.length">Showing {{ books.length }}/{{ count }} result
         <template v-if="books.length > 1">s</template>
       </p>
       <p v-else>{{ count }} book
         <template v-if="count > 1">s</template>
       </p>
-    </div>
+    </Card>
   </div>
 </template>
 
@@ -37,10 +41,11 @@
 import BookWidget from '@/components/BookWidget';
 import Loading from '@/components/Loading';
 import {mapState} from 'vuex';
+import Card from '@/components/Card';
 
 export default {
   name: 'Books',
-  components: {BookWidget, Loading},
+  components: {Card, BookWidget, Loading},
   data() {
     return {search: ''};
   },

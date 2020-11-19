@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="d-flex elevation-z4 bg-white p-2 justify-between align-center">
+    <Card class="d-flex justify-between align-center">
       <h2>Comments</h2>
       <Button @click="toggleForm()">Comment</Button>
-    </div>
+    </Card>
 
     <AddComment v-if="showForm" class="mt-3" v-bind:slug="slug" @cancel="toggleForm()"/>
 
@@ -15,9 +15,9 @@
       <Comment v-for="comment in items" v-bind:key="comment.id" class="mt-3" v-bind:comment="comment"/>
     </template>
 
-    <div v-else class="mt-3 elevation-z4 bg-white p-2">
+    <Card v-else class="mt-3">
       <Loading desc="Loading comments"/>
-    </div>
+    </Card>
   </div>
 </template>
 
@@ -27,10 +27,11 @@ import {mapState} from 'vuex';
 import Comment from '@/components/Comment';
 import Button from '@/components/Button';
 import AddComment from '@/components/AddComment';
+import Card from '@/components/Card';
 
 export default {
   name: 'Comments',
-  components: {AddComment, Button, Comment, Loading},
+  components: {Card, AddComment, Button, Comment, Loading},
   props: {
     slug: {
       type: String,

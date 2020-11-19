@@ -1,5 +1,5 @@
 <template>
-  <div class="add-comment p-2 elevation-z4 bg-white">
+  <Card class="add-comment ">
     <form action="" @submit="addComment($event)">
       <header>
         <h2>Add Comment</h2>
@@ -52,16 +52,17 @@
         </footer>
       </template>
     </form>
-  </div>
+  </Card>
 </template>
 
 <script>
 import Button from '@/components/Button';
 import Loading from '@/components/Loading';
+import Card from '@/components/Card';
 
 export default {
   name: 'AddComment',
-  components: {Loading, Button},
+  components: {Card, Loading, Button},
   props: {slug: {type: String, required: true}},
   data() {
     return {

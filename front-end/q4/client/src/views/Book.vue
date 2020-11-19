@@ -1,37 +1,46 @@
 <template>
   <div class="book">
     <div class="container">
-      <template v-if="book">
-        <nav class="mt-3">
-          <router-link to="/books">
-            <Button>Back</Button>
-          </router-link>
-        </nav>
+      <nav class="mt-3">
+        <router-link to="/books">
+          <Button>Back</Button>
+        </router-link>
+      </nav>
 
-        <header class="elevation-z4 p-2 mt-3 bg-white">
-          <h1>{{ book.title }}</h1>
-          <h2><i>{{ book.author }}</i></h2>
+      <template v-if="book">
+
+        <header class="mt-3">
+          <Card>
+            <h1>{{ book.title }}</h1>
+            <h2><i>{{ book.author }}</i></h2>
+          </Card>
         </header>
 
         <div class="d-flex mt-3 wrapper">
           <div class="flex-fill">
-            <main class="elevation-z4 p-2 bg-white">
-              <h2>Synopsis</h2>
-              <p class="mt-2">{{ book.synopsis }}</p>
+            <main>
+              <Card>
+                <h2>Synopsis</h2>
+                <p class="mt-2">{{ book.synopsis }}</p>
+              </Card>
             </main>
 
-            <footer class="d-flex justify-between elevation-z4 p-2 bg-white mt-3 align-center flex-wrap no-wrap justify-center">
-              <h3>Rating: {{ book.rating }}/10</h3>
+            <footer class="mt-3">
+              <Card class="d-flex justify-between align-center flex-wrap no-wrap justify-center">
+                <h3>Rating: {{ book.rating }}/10</h3>
 
-              <div class="ml-3"></div>
+                <div class="ml-3"></div>
 
-              <div>
-                <span>Upvoted {{ book.upvotes }} times</span>
-                <Button class="ml-3">Upvote</Button>
-              </div>
+                <div>
+                  <span>Upvoted {{ book.upvotes }} times</span>
+                  <Button class="ml-3">Upvote</Button>
+                </div>
+              </Card>
             </footer>
           </div>
+
           <div class="ml-3"></div>
+
           <aside>
             <figure>
               <img v-bind:src="book.cover" v-bind:alt="book.title" class="elevation-z4">
@@ -42,7 +51,11 @@
         <Comments class="my-2" v-bind:slug="book.slug"/>
       </template>
 
-      <Loading v-else title="Please wait" desc="Loading book" class="mt-3"/>
+      <template v-else>
+        <Card class="mt-3">
+          <Loading desc="Loading book"/>
+        </Card>
+      </template>
     </div>
   </div>
 </template>
@@ -52,10 +65,11 @@ import Loading from '@/components/Loading';
 import Button from '@/components/Button';
 import {mapState} from 'vuex';
 import Comments from '@/components/Comments';
+import Card from '@/components/Card';
 
 export default {
   name: 'Book',
-  components: {Comments, Loading, Button},
+  components: {Card, Comments, Loading, Button},
   computed: {
     ...mapState(['map']),
     slug() {

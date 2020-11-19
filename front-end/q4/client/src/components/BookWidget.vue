@@ -1,5 +1,5 @@
 <template>
-  <div class="book-widget elevation-z4 p-2 bg-white">
+  <Card class="book-widget">
     <div class="d-flex wrapper">
       <div class="d-flex flex-fill flex-column">
         <header>
@@ -43,18 +43,19 @@
       <span v-else-if="book.upvotes > 1">Upvoted {{ book.upvotes }} times</span>
       <span v-else>Upvoted once</span>
     </footer>
-  </div>
+  </Card>
 </template>
 
 <script>
 import Button from '@/components/Button';
+import Card from '@/components/Card';
 
 export const maxLength = 200;
 
 export default {
   name: 'BookWidget',
   props: ['book'],
-  components: {Button},
+  components: {Card, Button},
   computed: {
     trimmedSynopsis() {
       if (maxLength > this.book.synopsis.length) {
