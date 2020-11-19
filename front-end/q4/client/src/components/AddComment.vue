@@ -134,8 +134,6 @@ export default {
       }
 
       this.pending = true;
-      console.log('this.$store.dispatch(\'addComment\', ', this.comment, ')');
-
       this.$store.dispatch('addComment', this.comment).then(() => {
         this.pending = false;
         this.$emit('cancel');
