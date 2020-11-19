@@ -6,7 +6,7 @@
       </div>
 
       <template v-if="books">
-        <div class="mb-2">
+        <div class="p-2 elevation-z4 bg-white mb-2">
           <label class="d-flex">
             <input type="text" v-model="search" placeholder="Filter books" class="flex-fill"/>
           </label>
@@ -87,6 +87,7 @@ export default {
     outline: unset;
     border-bottom: 2px solid #ccc;
     transition: border-bottom-color .2s;
+    background-color: transparent;
 
     &:focus {
       border-bottom-color: $blue-jeans;
