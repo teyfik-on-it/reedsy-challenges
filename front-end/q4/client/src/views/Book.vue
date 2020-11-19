@@ -105,10 +105,6 @@ export default {
     }
   }
 
-  .no-wrap {
-    white-space: nowrap;
-  }
-
   @media (min-width: 560px) {
     aside {
       flex: 0 1 30%;
