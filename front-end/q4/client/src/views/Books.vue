@@ -45,7 +45,7 @@
         <Card class="d-flex justify-end mt-3">
           <Paginator
               storage-key="books"
-              v-bind:total="239"
+              v-bind:total="filteredItems.length"
               v-on:skip="skip = $event"
               v-on:take="take = $event"/>
         </Card>
