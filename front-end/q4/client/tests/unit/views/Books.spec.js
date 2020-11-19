@@ -9,7 +9,7 @@ const localVue = createLocalVue();
 
 localVue.use(Vuex);
 
-describe('Book', () => {
+describe('Books', () => {
   const createWrapper = (fill = true) => {
     return shallowMount(Books, {
       localVue,
