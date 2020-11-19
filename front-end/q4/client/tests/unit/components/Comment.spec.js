@@ -1,6 +1,6 @@
 import comments from '../data/comments';
-
-const {shallowMount} = require('@vue/test-utils');
+import {shallowMount} from '@vue/test-utils';
+import Comment from '@/components/Comment';
 
 describe('Comment', () => {
   const comment = comments['example-slug'][0];
@@ -16,10 +16,10 @@ describe('Comment', () => {
     expect(wrapper.find('footer p').exists()).toBeFalsy();
   });
 
-  it('should display delete confirm', function () {
-    wrapper.setProps({
-      confirm: true,
-    });
+  it('should display delete confirm', async function () {
+    wrapper.find('.btn.danger').trigger('click');
+
+    await wrapper.vm.$nextTick();
 
     expect(wrapper.find('footer p').exists()).toBeTruthy();
   });
