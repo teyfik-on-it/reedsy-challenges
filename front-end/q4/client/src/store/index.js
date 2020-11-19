@@ -20,12 +20,17 @@ export default new Vuex.Store({
     },
     setComments(state, {slug, comments}) {
       state.comments[slug] = comments;
+      state.comments = {...state.comments};
     },
-    addComment({comments}, comment) {
+    addComment(state, comment) {
       const {slug} = comment;
+      const {comments} = state;
+
 
       comments[slug] = comments[slug] || [];
       comments[slug] = comments[slug].concat(comment).sort((a, b) => a.id - b.id);
+
+      state.comments = {...state.comments};
     },
   },
   actions: {
