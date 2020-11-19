@@ -36,6 +36,8 @@
             </figure>
           </aside>
         </div>
+
+        <Comments class="my-2" v-bind:slug="book.slug"/>
       </template>
 
       <Loading v-else title="Please wait" desc="Loading book" class="mt-3"/>
@@ -47,10 +49,11 @@
 import Loading from '@/components/Loading';
 import Button from '@/components/Button';
 import {mapState} from 'vuex';
+import Comments from '@/components/Comments';
 
 export default {
   name: 'Book',
-  components: {Loading, Button},
+  components: {Comments, Loading, Button},
   computed: {
     ...mapState(['map']),
     slug() {

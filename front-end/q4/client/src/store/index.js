@@ -26,10 +26,13 @@ export default new Vuex.Store({
       const {slug} = comment;
       const {comments} = state;
 
-
       comments[slug] = comments[slug] || [];
       comments[slug] = comments[slug].concat(comment).sort((a, b) => b.id - a.id);
 
+      state.comments = {...state.comments};
+    },
+    deleteComment(state, comment) {
+      state.comments[comment.slug] = state.comments[comment.slug].filter(({id}) => id !== comment.id);
       state.comments = {...state.comments};
     },
   },
@@ -52,6 +55,11 @@ export default new Vuex.Store({
     addComment({commit}, payload) {
       api.comments.addComment(payload).then(comment => {
         commit('addComment', comment);
+      });
+    },
+    deleteComment({commit}, comment) {
+      api.comments.deleteComment(comment.id).then(() => {
+        commit('deleteComment', comment);
       });
     },
   },
