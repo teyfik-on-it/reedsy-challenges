@@ -21,19 +21,3 @@ a {
   color: inherit;
   text-decoration: unset;
 }
-
-ul {
-  list-style-type: none;
-}
-
-.sticky {
-  position: fixed;
-}
-
-.sticky.bottom {
-  bottom: 0;
-}
-
-.sticky.left {
-  left: 0;
-}

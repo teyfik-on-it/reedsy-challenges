@@ -1,39 +1,52 @@
 <template>
-  <div class="books">
-    <div class="container">
-      <div class="d-flex justify-center mb-2">
-        <h1>Top books of all time</h1>
+  <div class="books h-100 d-flex flex-column">
+    <header>
+      <div class="container">
+        <Card class="d-flex justify-center">
+          <h1>Top books of all time</h1>
+        </Card>
       </div>
+    </header>
 
-      <template v-if="books">
-        <Card class="mb-2">
-          <label class="d-flex">
-            <input type="text" v-model="search" placeholder="Filter books" class="flex-fill"/>
-          </label>
+    <main class="flex-fill">
+      <div class="container">
+        <template v-if="!books">
+          <Card class="mt-3">
+            <Loading desc="Loading books"/>
+          </Card>
+        </template>
+
+        <template v-else-if="!books.length">
+          <Card class="mt-3">
+            <p>No book found</p>
+          </Card>
+        </template>
+
+        <template v-else>
+          <Card class="mt-3">
+            <label class="d-flex">
+              <input type="text" v-model="search" placeholder="Filter books" class="search-control flex-fill"/>
+            </label>
+          </Card>
+
+          <BookWidget v-bind:book="book" v-bind:key="book.slug" v-for="book of books"/>
+        </template>
+      </div>
+    </main>
+
+    <footer v-if="books">
+      <div class="container">
+        <Card class="d-flex justify-center">
+          <p v-if="count > books.length">
+            Showing {{ books.length }}/{{ count }} result{{ books.length > 1 ? 's' : '' }}
+          </p>
+
+          <p v-else>
+            {{ count }} book{{ books.length > 1 ? 's' : '' }}
+          </p>
         </Card>
-
-        <ul>
-          <li v-bind:key="book.slug" v-for="book of books">
-            <BookWidget v-bind:book="book"/>
-          </li>
-        </ul>
-      </template>
-
-      <template v-else>
-        <Card>
-          <Loading desc="Loading books"/>
-        </Card>
-      </template>
-    </div>
-
-    <Card class="sticky bottom left w-100 d-flex justify-center elevation-t6" v-if="books">
-      <p v-if="count > books.length">Showing {{ books.length }}/{{ count }} result
-        <template v-if="books.length > 1">s</template>
-      </p>
-      <p v-else>{{ count }} book
-        <template v-if="count > 1">s</template>
-      </p>
-    </Card>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -74,29 +87,40 @@ export default {
 @import "src/styles/colors";
 
 .books {
-  padding: 1rem 1rem 5rem 1rem;
+  padding: 1rem 1rem 5.5rem 1rem;
 
   .container {
     max-width: 640px;
   }
 
-  li + li {
-    margin-top: 2rem;
+  main {
+    .search-control {
+      margin: 0;
+      border: 0;
+      font-size: 16px;
+      padding: .4rem 0;
+      outline: unset;
+      border-bottom: 2px solid #ccc;
+      transition: border-bottom-color .2s;
+      background-color: transparent;
+
+      &:focus {
+        border-bottom-color: $blue-jeans;
+      }
+    }
+
+    ::v-deep .book-widget {
+      margin-top: 1.5rem;
+    }
   }
 
-  input {
-    margin: 0;
-    border: 0;
-    font-size: 16px;
-    padding: .4rem 0;
-    outline: unset;
-    border-bottom: 2px solid #ccc;
-    transition: border-bottom-color .2s;
-    background-color: transparent;
 
-    &:focus {
-      border-bottom-color: $blue-jeans;
-    }
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
   }
 }
 </style>
