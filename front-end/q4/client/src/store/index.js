@@ -28,7 +28,7 @@ export default new Vuex.Store({
 
 
       comments[slug] = comments[slug] || [];
-      comments[slug] = comments[slug].concat(comment).sort((a, b) => a.id - b.id);
+      comments[slug] = comments[slug].concat(comment).sort((a, b) => b.id - a.id);
 
       state.comments = {...state.comments};
     },
