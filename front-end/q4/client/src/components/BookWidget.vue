@@ -1,35 +1,48 @@
 <template>
-  <div class="book-widget d-flex elevation-z4 p-2 bg-white">
-    <div class="d-flex flex-fill flex-column">
-      <header>
+  <div class="book-widget elevation-z4 p-2 bg-white">
+    <div class="d-flex wrapper">
+      <div class="d-flex flex-fill flex-column">
+        <header>
+          <router-link v-bind:to="'/book/' + book.slug">
+            <h2>{{ book.title }} <small>{{ book.rating }}/10</small></h2>
+            <h3>{{ book.author }}</h3>
+          </router-link>
+        </header>
+
+        <main class="flex-fill my-2">
+          <p class="synopsis">{{ trimmedSynopsis }}</p>
+        </main>
+
+        <footer class="d-flex justify-between align-center desktop">
+          <Button v-bind:outline="book.upvoted" v-bind:disabled="book.upvoted">
+            {{ book.upvoted ? 'Upvoted' : 'Upvote' }}
+          </Button>
+
+          <span v-if="book.upvotes === 0">Never upvoted</span>
+          <span v-else-if="book.upvotes > 1">Upvoted {{ book.upvotes }} times</span>
+          <span v-else>Upvoted once</span>
+        </footer>
+      </div>
+
+      <aside class="ml-3">
         <router-link v-bind:to="'/book/' + book.slug">
-          <h2>{{ book.title }} <small>{{ book.rating }}/10</small></h2>
-          <h3>{{ book.author }}</h3>
+          <figure>
+            <img v-bind:src="book.cover" v-bind:alt="book.title" class="elevation-z2">
+          </figure>
         </router-link>
-      </header>
-
-      <main class="flex-fill my-2">
-        <p class="synopsis">{{ trimmedSynopsis }}</p>
-      </main>
-
-      <footer class="d-flex justify-between align-center">
-        <Button v-bind:outline="book.upvoted" v-bind:disabled="book.upvoted">
-          {{ book.upvoted ? 'Upvoted' : 'Upvote' }}
-        </Button>
-
-        <span v-if="book.upvotes === 0">Never upvoted</span>
-        <span v-else-if="book.upvotes > 1">Upvoted {{ book.upvotes }} times</span>
-        <span v-else>Upvoted once</span>
-      </footer>
+      </aside>
     </div>
 
-    <aside class="ml-3">
-      <router-link v-bind:to="'/book/' + book.slug">
-        <figure>
-          <img v-bind:src="book.cover" v-bind:alt="book.title" class="elevation-z2">
-        </figure>
-      </router-link>
-    </aside>
+
+    <footer class="d-flex justify-between align-center mobile">
+      <Button v-bind:outline="book.upvoted" v-bind:disabled="book.upvoted">
+        {{ book.upvoted ? 'Upvoted' : 'Upvote' }}
+      </Button>
+
+      <span v-if="book.upvotes === 0">Never upvoted</span>
+      <span v-else-if="book.upvotes > 1">Upvoted {{ book.upvotes }} times</span>
+      <span v-else>Upvoted once</span>
+    </footer>
   </div>
 </template>
 
@@ -59,6 +72,23 @@ export default {
   img {
     max-width: 140px;
     border-radius: 10px;
+  }
+
+  @media (min-width: 560px) {
+    .mobile {
+      display: none;
+    }
+  }
+
+  @media (max-width: 559px) {
+    .wrapper {
+      align-items: center;
+      flex-direction: column-reverse;
+    }
+
+    .desktop {
+      display: none;
+    }
   }
 }
 </style>
